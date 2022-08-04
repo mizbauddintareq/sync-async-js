@@ -8,6 +8,12 @@ const isPrime = (num) => {
   }
   return true;
 };
+// const sleepWithSetTimeout = (num, callback) => {
+//   const start = Date.now();
+//   setTimeout(() => {
+//     callback(new Date(start).getSeconds(), num);
+//   }, num * 1000);
+// };
 
 const syncCallbackFunction = (number, start) => {
   const numIsPrime = isPrime(number);

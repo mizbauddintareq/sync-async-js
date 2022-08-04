@@ -1,4 +1,4 @@
-console.log("Hello friends");
+console.log("async file loaded");
 
 const isPrime = (num) => {
   if (num < 2) return false;
@@ -8,34 +8,26 @@ const isPrime = (num) => {
   return true;
 };
 
-const syncCallbackFunction = (number, start) => {
-  const numIsPrime = isPrime(number);
-  console.log(
-    "prime: ",
-    number,
-    "result: ",
-    numIsPrime,
-    "start: ",
-    start,
-    "end",
-    new Date()
-  );
+const sleepWithSetTimeout = (num, callback) => {
+  const start = Date.now();
+  setTimeout(() => {
+    callback(new Date(start).getSeconds(), num);
+  }, num * 1000);
 };
 
-const sleepWithCallback = (number, callback) => {
-  const start = Date.now();
-  const sleep = number * 100;
-  while (true) {
-    if (Date.now() - start > sleep) break;
-  }
-  callback(number, new Date(start));
+const setTimeOutCallbackFunction = (start, number) => {
+  const numIsPrime = isPrime(number);
+  console.log("prime:", number, numIsPrime, start, new Date().getSeconds());
 };
 
 const syncWithSetTimeout = () => {
   for (let index = 0; index < 10; index++) {
-    console.log("sleeping:", index, new Date().getSeconds());
+    console.log("Looping: \t", index, "\t", new Date());
     sleepWithSetTimeout(index, setTimeOutCallbackFunction);
   }
-  console.log("done");
+  console.log("syncWithSetTimeout done");
 };
+
 syncWithSetTimeout();
+
+console.log("done");
